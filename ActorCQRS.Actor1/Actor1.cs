@@ -21,24 +21,28 @@ namespace ActorCQRS.Actor1
     [StatePersistence(StatePersistence.Persisted)]
     internal class Actor1 : Actor, ICommandMeasurement, IQueryMeasurement
     {
-        /// <summary>
-        /// Initializes a new instance of Actor1
-        /// </summary>
-        /// <param name="actorService">The Microsoft.ServiceFabric.Actors.Runtime.ActorService that will host this actor instance.</param>
-        /// <param name="actorId">The Microsoft.ServiceFabric.Actors.ActorId for this actor instance.</param>
+        const string ActorStateKey = "Measurements";
+
+
         public Actor1(ActorService actorService, ActorId actorId) 
             : base(actorService, actorId)
         {
         }
 
-        public Task AddMasurementAsync(Measurement measurement)
+        public async Task AddMasurementAsync(Measurement measurement)
         {
-            throw new NotImplementedException();
+            List<Measurement> measurements = await StateManager.GetOrAddStateAsync(ActorStateKey, new List<Measurement>());
+
+            measurements.Add(measurement);
+
+            await StateManager.SetStateAsync(ActorStateKey, measurements);
         }
 
-        public Task<List<Measurement>> GetMeasurementsAsync()
+        public async Task<List<Measurement>> GetMeasurementsAsync()
         {
-            throw new NotImplementedException();
+            List<Measurement> measurements = await StateManager.GetOrAddStateAsync(ActorStateKey, new List<Measurement>());
+
+            return measurements;
         }
 
         /// <summary>
@@ -56,26 +60,5 @@ namespace ActorCQRS.Actor1
 
             return this.StateManager.TryAddStateAsync("count", 0);
         }
-
-        ///// <summary>
-        ///// TODO: Replace with your own actor method.
-        ///// </summary>
-        ///// <returns></returns>
-        //Task<int> IActor1.GetCountAsync(CancellationToken cancellationToken)
-        //{
-        //    return this.StateManager.GetStateAsync<int>("count", cancellationToken);
-        //}
-
-        ///// <summary>
-        ///// TODO: Replace with your own actor method.
-        ///// </summary>
-        ///// <param name="count"></param>
-        ///// <returns></returns>
-        //Task IActor1.SetCountAsync(int count, CancellationToken cancellationToken)
-        //{
-        //    // Requests are not guaranteed to be processed in order nor at most once.
-        //    // The update function here verifies that the incoming count is greater than the current count to preserve order.
-        //    return this.StateManager.AddOrUpdateStateAsync("count", count, (key, value) => count > value ? count : value, cancellationToken);
-        //}
     }
 }
