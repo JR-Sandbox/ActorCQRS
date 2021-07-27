@@ -54,15 +54,37 @@ namespace ActorCQRS.Actor1
 
         protected override IEnumerable<ServiceReplicaListener> CreateServiceReplicaListeners()
         {
+            //var v = base.CreateServiceReplicaListeners();
+
+            //var t = new FabricTransportServiceRemotingListener(null, this, new FabricTransportRemotingListenerSettings
+            //{
+            //    EndpointResourceName = "QueryListenerEndpoint"
+            //});
+
+
             try
             {
-                ///////////// check out the last parameter for listening on secondary...
-                return new[]
+                var results = new []
                 {
-                    new ServiceReplicaListener((context) => new FabricTransportServiceRemotingListener(context, this), "QueryListenerName", true),
-                    new ServiceReplicaListener((context) => new FabricTransportServiceRemotingListener(context, this), "CommandListenerName", false),
+                    new ServiceReplicaListener((context) => new FabricTransportServiceRemotingListener(context, this, new FabricTransportRemotingListenerSettings { EndpointResourceName = "QueryListenerEndpoint" }), "QueryListener", true),
+                    new ServiceReplicaListener((context) => new FabricTransportServiceRemotingListener(context, this, new FabricTransportRemotingListenerSettings { EndpointResourceName = "CommandListenerEndpoint" }), "CommandListener", true)
+
+
+                    //new ServiceReplicaListener((context) => new FabricTransportServiceRemotingListener(context, this, new FabricTransportRemotingListenerSettings { EndpointResourceName = "QueryListenerEndpoint"), "QueryListener", true)
                 };
 
+                return results;
+
+
+
+                // works, but appears to be V1
+                //var results = new[]
+                //{
+                //    new ServiceReplicaListener((context) => new FabricTransportServiceRemotingListener(context, this), "QueryListener", true),
+                //    new ServiceReplicaListener((context) => new FabricTransportServiceRemotingListener(context, this), "CommandListener", false),
+                //};
+
+                //return results;
             }
             catch (Exception ex)
             {

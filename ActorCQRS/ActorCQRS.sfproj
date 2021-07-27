@@ -33,6 +33,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ActorCQRS.Actor1\ActorCQRS.Actor1.csproj" />
+    <ProjectReference Include="..\ActorCQRS.Actor2\ActorCQRS.Actor2.csproj" />
     <ProjectReference Include="..\ActorCQRS.API\ActorCQRS.API.csproj">
       <ServiceLaunchUrl>http://{MachineName}:{ServicePort}/weatherforecast</ServiceLaunchUrl>
     </ProjectReference>

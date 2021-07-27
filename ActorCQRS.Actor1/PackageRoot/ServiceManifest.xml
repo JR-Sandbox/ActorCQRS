@@ -10,7 +10,7 @@
             <ReplicatorConfigSection Name="Actor1ActorServiceReplicatorConfig" />
             <ReplicatorSecurityConfigSection Name="Actor1ActorServiceReplicatorSecurityConfig" />
             <StoreConfigSection Name="Actor1ActorServiceLocalStoreConfig" />
-            <ServiceEndpointV2_1 Name="Actor1ActorServiceEndpointV2_1" />
+            <ServiceEndpointV2 Name="Actor1ActorServiceEndpointV2" />
           </GeneratedNames>
         </Extension>
       </Extensions>
@@ -26,10 +26,10 @@
   <ConfigPackage Name="Config" Version="1.0.0" />
   <Resources>
     <Endpoints>
-      <Endpoint Name="Actor1ActorServiceEndpointV2_1" />
       <Endpoint Name="Actor1ActorServiceReplicatorEndpoint" />
-      <Endpoint Name="QueryListenerName" />
-      <Endpoint Name="CommandListenerName" />
+      <Endpoint Name="QueryListenerEndpoint" />
+      <Endpoint Name="CommandListenerEndpoint" />
+      <Endpoint Name="Actor1ActorServiceEndpointV2" />
     </Endpoints>
   </Resources>
   <!-- The content will be generated during build -->

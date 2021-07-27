@@ -33,14 +33,11 @@ namespace ActorCQRS.API.Controllers
         {
             var serviceUri = new Uri("fabric:/ActorCQRS/Actor1ActorService");
             var actorId = new ActorId(_plantId);
-            var proxy = ActorProxy.Create<IActor1>(actorId, serviceUri, "QueryListenerName");
-
-            //var getter = ActorProxy.Create<IActor1>(actorId, null, "Actor1ActorService", "QueryListenerName");
+            var proxy = ActorProxy.Create<IActor1>(actorId, serviceUri, "QueryListener");
 
             var result = await proxy.GetMeasurementsAsync();
 
             return Ok(result);
-
 
             //var serviceUri = new Uri("fabric:/ActorCQRS/Actor1ActorService");
             //var actorId = new ActorId(_plantId);

@@ -6,10 +6,16 @@
     <Parameter Name="Actor1ActorService_PartitionCount" DefaultValue="10" />
     <Parameter Name="Actor1ActorService_MinReplicaSetSize" DefaultValue="3" />
     <Parameter Name="Actor1ActorService_TargetReplicaSetSize" DefaultValue="3" />
+    <Parameter Name="Actor2ActorService_PartitionCount" DefaultValue="10" />
+    <Parameter Name="Actor2ActorService_MinReplicaSetSize" DefaultValue="3" />
+    <Parameter Name="Actor2ActorService_TargetReplicaSetSize" DefaultValue="3" />
   </Parameters>
   <!-- Import the ServiceManifest from the ServicePackage. The ServiceManifestName and ServiceManifestVersion 
        should match the Name and Version attributes of the ServiceManifest element defined in the 
        ServiceManifest.xml file. -->
+  <ServiceManifestImport>
+    <ServiceManifestRef ServiceManifestName="ActorCQRS.Actor2Pkg" ServiceManifestVersion="1.0.0" />
+  </ServiceManifestImport>
   <ServiceManifestImport>
     <ServiceManifestRef ServiceManifestName="ActorCQRS.Actor1Pkg" ServiceManifestVersion="1.0.0" />
   </ServiceManifestImport>
@@ -34,6 +40,11 @@
     <Service Name="Actor1ActorService" GeneratedIdRef="0723477b-6802-4807-ac50-05afdb8fc739|Persisted">
       <StatefulService ServiceTypeName="Actor1ActorServiceType" TargetReplicaSetSize="[Actor1ActorService_TargetReplicaSetSize]" MinReplicaSetSize="[Actor1ActorService_MinReplicaSetSize]">
         <UniformInt64Partition PartitionCount="[Actor1ActorService_PartitionCount]" LowKey="-9223372036854775808" HighKey="9223372036854775807" />
+      </StatefulService>
+    </Service>
+    <Service Name="Actor2ActorService" GeneratedIdRef="060077fd-90af-4a07-ae8c-ba5c09fb18e1|Persisted">
+      <StatefulService ServiceTypeName="Actor2ActorServiceType" TargetReplicaSetSize="[Actor2ActorService_TargetReplicaSetSize]" MinReplicaSetSize="[Actor2ActorService_MinReplicaSetSize]">
+        <UniformInt64Partition PartitionCount="[Actor2ActorService_PartitionCount]" LowKey="-9223372036854775808" HighKey="9223372036854775807" />
       </StatefulService>
     </Service>
   </DefaultServices>

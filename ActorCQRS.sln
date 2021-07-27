@@ -5,11 +5,15 @@ VisualStudioVersion = 16.0.30128.74
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{A07B5EB6-E848-4116-A8D0-A826331D98C6}") = "ActorCQRS", "ActorCQRS\ActorCQRS.sfproj", "{1A65B937-B570-4ED9-A428-01593C191547}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ActorCQRS.API", "ActorCQRS.API\ActorCQRS.API.csproj", "{9018228F-E127-4E58-A097-1AABE97B6F64}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ActorCQRS.API", "ActorCQRS.API\ActorCQRS.API.csproj", "{9018228F-E127-4E58-A097-1AABE97B6F64}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ActorCQRS.Actor1", "ActorCQRS.Actor1\ActorCQRS.Actor1.csproj", "{E766CA92-1BD0-4197-B751-C90CF3D03376}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ActorCQRS.Actor1", "ActorCQRS.Actor1\ActorCQRS.Actor1.csproj", "{E766CA92-1BD0-4197-B751-C90CF3D03376}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ActorCQRS.Actor1.Interfaces", "ActorCQRS.Actor1.Interfaces\ActorCQRS.Actor1.Interfaces.csproj", "{2752FC3C-733C-4579-BF5B-AE61E913F6D2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ActorCQRS.Actor1.Interfaces", "ActorCQRS.Actor1.Interfaces\ActorCQRS.Actor1.Interfaces.csproj", "{2752FC3C-733C-4579-BF5B-AE61E913F6D2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ActorCQRS.Actor2", "ActorCQRS.Actor2\ActorCQRS.Actor2.csproj", "{9C0E790E-2B1A-4918-871E-1B1E6ACEAA40}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ActorCQRS.Actor2.Interfaces", "ActorCQRS.Actor2.Interfaces\ActorCQRS.Actor2.Interfaces.csproj", "{346F3CF8-58B1-4374-AEA6-D29FEB25E2A6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +55,22 @@ Global
 		{2752FC3C-733C-4579-BF5B-AE61E913F6D2}.Release|Any CPU.Build.0 = Release|Any CPU
 		{2752FC3C-733C-4579-BF5B-AE61E913F6D2}.Release|x64.ActiveCfg = Release|Any CPU
 		{2752FC3C-733C-4579-BF5B-AE61E913F6D2}.Release|x64.Build.0 = Release|Any CPU
+		{9C0E790E-2B1A-4918-871E-1B1E6ACEAA40}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9C0E790E-2B1A-4918-871E-1B1E6ACEAA40}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9C0E790E-2B1A-4918-871E-1B1E6ACEAA40}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{9C0E790E-2B1A-4918-871E-1B1E6ACEAA40}.Debug|x64.Build.0 = Debug|Any CPU
+		{9C0E790E-2B1A-4918-871E-1B1E6ACEAA40}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9C0E790E-2B1A-4918-871E-1B1E6ACEAA40}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9C0E790E-2B1A-4918-871E-1B1E6ACEAA40}.Release|x64.ActiveCfg = Release|Any CPU
+		{9C0E790E-2B1A-4918-871E-1B1E6ACEAA40}.Release|x64.Build.0 = Release|Any CPU
+		{346F3CF8-58B1-4374-AEA6-D29FEB25E2A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{346F3CF8-58B1-4374-AEA6-D29FEB25E2A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{346F3CF8-58B1-4374-AEA6-D29FEB25E2A6}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{346F3CF8-58B1-4374-AEA6-D29FEB25E2A6}.Debug|x64.Build.0 = Debug|Any CPU
+		{346F3CF8-58B1-4374-AEA6-D29FEB25E2A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{346F3CF8-58B1-4374-AEA6-D29FEB25E2A6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{346F3CF8-58B1-4374-AEA6-D29FEB25E2A6}.Release|x64.ActiveCfg = Release|Any CPU
+		{346F3CF8-58B1-4374-AEA6-D29FEB25E2A6}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
