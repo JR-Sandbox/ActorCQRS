@@ -1,9 +1,11 @@
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Fabric;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.ServiceFabric.Actors.Runtime;
+using Microsoft.ServiceFabric.Services.Communication.Runtime;
 
 namespace ActorCQRS.Actor1
 {
@@ -21,8 +23,12 @@ namespace ActorCQRS.Actor1
                 // are automatically populated when you build this project.
                 // For more information, see https://aka.ms/servicefabricactorsplatform
 
-                ActorRuntime.RegisterActorAsync<Actor1> (
-                   (context, actorType) => new ActorService(context, actorType)).GetAwaiter().GetResult();
+                ActorRuntime.RegisterActorAsync<Actor1>(
+                    (context, actorType) => new MyActorService(context, actorType)).GetAwaiter().GetResult();
+
+
+                //ActorRuntime.RegisterActorAsync<Actor1> (
+                //   (context, actorType) => new ActorService(context, actorType)).GetAwaiter().GetResult();
 
                 Thread.Sleep(Timeout.Infinite);
             }
@@ -31,6 +37,19 @@ namespace ActorCQRS.Actor1
                 ActorEventSource.Current.ActorHostInitializationFailed(e.ToString());
                 throw;
             }
+        }
+    }
+
+
+    class MyActorService : ActorService
+    {
+        public MyActorService(StatefulServiceContext context, ActorTypeInformation typeInfo)
+            : base(context, typeInfo)
+        { }
+
+        protected override IEnumerable<ServiceReplicaListener> CreateServiceReplicaListeners()
+        {
+            return base.CreateServiceReplicaListeners();
         }
     }
 }

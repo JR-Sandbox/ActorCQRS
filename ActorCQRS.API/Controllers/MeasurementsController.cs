@@ -21,7 +21,7 @@ namespace ActorCQRS.API.Controllers
         {
             var serviceUri = new Uri("fabric:/ActorCQRS/Actor1ActorService");
             var actorId = new ActorId(_plantId);
-            var proxy = ActorProxy.Create<ICommandMeasurement>(actorId, serviceUri, "V2_1Listener");
+            var proxy = ActorProxy.Create<IActor1>(actorId, serviceUri, "V2_1Listener");
 
             await proxy.AddMasurementAsync(measurement);
 
@@ -31,13 +31,30 @@ namespace ActorCQRS.API.Controllers
         [HttpGet]
         public async Task<IActionResult> GetMeasurements()
         {
+            //var serviceUri = new Uri("fabric:/ActorCQRS/Actor1ActorService");
+            //var actorId = new ActorId(_plantId);
+            //var proxy = ActorProxy.Create<IQueryMeasurement>(actorId, serviceUri, "V2_1Listener");
+
+
+            //IQueryMeasurement getter = ActorProxy.Create<IQueryMeasurement>(actorId, null, "Actor1ActorService", "ListenerName");
+
+            //var result = await proxy.GetMeasurementsAsync();
+
+            //return Ok(result);
+
+
             var serviceUri = new Uri("fabric:/ActorCQRS/Actor1ActorService");
             var actorId = new ActorId(_plantId);
-            var proxy = ActorProxy.Create<IQueryMeasurement>(actorId, serviceUri, "V2_1Listener");
+            var proxy = ActorProxy.Create<IActor1>(actorId, serviceUri, "V2_1Listener");
+
+            // specify listener name
+            IActor1 getter = ActorProxy.Create<IActor1>(actorId, null, "Actor1ActorService", "ListenerName");
 
             var result = await proxy.GetMeasurementsAsync();
 
             return Ok(result);
+
+
         }
 
     }
