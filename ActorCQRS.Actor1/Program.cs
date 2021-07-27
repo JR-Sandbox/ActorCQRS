@@ -8,6 +8,9 @@ using Microsoft.ServiceFabric.Actors.Runtime;
 using Microsoft.ServiceFabric.Services.Communication.Runtime;
 using Microsoft.ServiceFabric.Services.Remoting.FabricTransport.Runtime;
 using Microsoft.ServiceFabric.Services.Remoting.V2.FabricTransport.Runtime;
+using Microsoft.ServiceFabric.Services.Remoting.Runtime;
+using System.Linq;
+using Microsoft.ServiceFabric.Actors.Remoting;
 
 namespace ActorCQRS.Actor1
 {
@@ -51,12 +54,22 @@ namespace ActorCQRS.Actor1
 
         protected override IEnumerable<ServiceReplicaListener> CreateServiceReplicaListeners()
         {
-            ///////////// check out the last parameter for listening on secondary...
-            return new[]
+            try
             {
-                new ServiceReplicaListener(null, "QueryListenerName", true),
-                new ServiceReplicaListener(null, "CommandListenerName", true),
-            };
+                ///////////// check out the last parameter for listening on secondary...
+                return new[]
+                {
+                    new ServiceReplicaListener((context) => new FabricTransportServiceRemotingListener(context, this), "QueryListenerName", true),
+                    new ServiceReplicaListener((context) => new FabricTransportServiceRemotingListener(context, this), "CommandListenerName", false),
+                };
+
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+
         }
     }
 }

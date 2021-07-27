@@ -28,6 +28,8 @@
     <Endpoints>
       <Endpoint Name="Actor1ActorServiceEndpointV2_1" />
       <Endpoint Name="Actor1ActorServiceReplicatorEndpoint" />
+      <Endpoint Name="QueryListenerName" />
+      <Endpoint Name="CommandListenerName" />
     </Endpoints>
   </Resources>
   <!-- The content will be generated during build -->
