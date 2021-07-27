@@ -6,6 +6,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.ServiceFabric.Actors.Runtime;
 using Microsoft.ServiceFabric.Services.Communication.Runtime;
+using Microsoft.ServiceFabric.Services.Remoting.V2.FabricTransport.Runtime;
 
 namespace ActorCQRS.Actor1
 {
@@ -49,7 +50,24 @@ namespace ActorCQRS.Actor1
 
         protected override IEnumerable<ServiceReplicaListener> CreateServiceReplicaListeners()
         {
-            return base.CreateServiceReplicaListeners();
+            return new[]
+            {
+                new ServiceInstanceListener(context => new FabricTransportServiceRemotingListener(context, new Actor1(this, null) // expects IService, not IActor
+                    )
+            }
+
+
+
+            //return new[]
+            //{
+            //    new ServiceInstanceListener(context =>
+            //        new FabricTransportServiceRemotingListener(context, new Actor1(this, null), "QueryListener"),
+            //    new ServiceInstanceListener(context =>
+            //        new FabricTransportServiceRemotingListener(context, new Actor1(this, null)), "CommandListener"),
+
+            //};
+
+            //return base.CreateServiceReplicaListeners();
         }
     }
 }
